@@ -8,14 +8,14 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 const corsOrigin ={
-    origin:'https://loginsignupbackend4.onrender.com',
+    origin:'*',
     credentials:true,            
     optionSuccessStatus:200
 }
 
 app.use(cors(corsOrigin))
 
-app.post("https://loginsignupbackend4.onrender.com/login",async(req,res)=>{
+app.post("/login",async(req,res)=>{
     const{email,password} = req.body
 
     try{
@@ -39,7 +39,7 @@ app.post("https://loginsignupbackend4.onrender.com/login",async(req,res)=>{
     }
 })
 
-app.post("https://loginsignupbackend4.onrender.com/signup",async (req,res)=>{
+app.post("/signup",async (req,res)=>{
     const {email,mobile,password}=req.body
     const newPassword = await bcrypt.hash(req.body.password,10)
     const data = {
