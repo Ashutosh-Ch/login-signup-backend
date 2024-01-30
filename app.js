@@ -7,16 +7,13 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+const corsOrigin ={
+    origin:'https://loginsignupbackend4.onrender.com',
+    credentials:true,            
+    optionSuccessStatus:200
+}
 
-app.use(cors(corsOptions))
-
-router.get("/", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Max-Age", "1800");
-    res.setHeader("Access-Control-Allow-Headers", "content-type");
-    res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
-});
+app.use(cors(corsOrigin))
 
 app.post("/login",async(req,res)=>{
     const{email,password} = req.body
